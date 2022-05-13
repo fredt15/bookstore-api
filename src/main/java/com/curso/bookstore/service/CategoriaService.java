@@ -1,6 +1,7 @@
 package com.curso.bookstore.service;
 
 import com.curso.bookstore.domain.Categoria;
+import com.curso.bookstore.dtos.CategoriaDTO;
 import com.curso.bookstore.repositories.CategoriaRepository;
 import com.curso.bookstore.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,13 @@ public class CategoriaService {
     }
     public Categoria create (Categoria obj) {
         obj.setId(null);
+        return repository.save(obj);
+    }
+
+    public Categoria create(Integer id, CategoriaDTO objDTO) {
+        Categoria obj = findById(id);
+        obj.setNome(objDTO.getNome());
+        obj.setDescricao(objDTO.getDescricao());
         return repository.save(obj);
     }
 }
