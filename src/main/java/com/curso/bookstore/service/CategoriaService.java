@@ -4,6 +4,7 @@ import com.curso.bookstore.domain.Categoria;
 import com.curso.bookstore.repositories.CategoriaRepository;
 import com.curso.bookstore.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,5 +23,8 @@ public class CategoriaService {
     public List<Categoria> finAlld(){
         return repository.findAll();
     }
-
+    public Categoria create (Categoria obj) {
+        obj.setId(null);
+        return repository.save(obj);
+    }
 }
